@@ -1,5 +1,7 @@
 
-package cz.surin.dusan.order;
+package cz.surin.dusan.Restaurant;
+
+import exceptions.DishException;
 
 public class Dish {
     private static int nextId = 1;
@@ -9,12 +11,30 @@ public class Dish {
     private int preparationTime;
     private String image;
 
-    public Dish(String title, double price, int preparationTime, String image) {
+    public Dish(String title, double price, int preparationTime, String image) throws DishException {
         this.idDish = nextId++;
         this.title = title;
         this.price = price;
+        checkPreparationTime(preparationTime);
         this.preparationTime = preparationTime;
         this.image = image;
+    }
+
+    public Dish(int idDish,String title, double price, int preparationTime) throws DishException{
+        this.idDish = idDish;
+        this.title = title;
+        this.price = price;
+        checkPreparationTime(preparationTime);
+        this.preparationTime = preparationTime;
+        this.image = "blank";
+    }
+
+    public int getIdDish() {
+        return idDish;
+    }
+
+    public void setIdDish(int idDish) {
+        this.idDish = idDish;
     }
 
     public String getTitle() {
@@ -47,6 +67,11 @@ public class Dish {
 
     public void setImage(String image) {
         this.image = image;
+    }
+    private void checkPreparationTime(int preparationTime) throws DishException {
+        if(preparationTime <= 0){
+            throw new DishException("Cas na pripravu pokrmu nesmi byt zaporne cislo: " + preparationTime);
+        }
     }
 
     @Override

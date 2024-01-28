@@ -1,2 +1,5 @@
-package exceptions;public class RestaurantExceptions {
+package exceptions;
+
+public class RestaurantException extends Exception {
+    public RestaurantException(String message) {super(message);}
 }
