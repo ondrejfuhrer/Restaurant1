@@ -74,7 +74,7 @@ public class CookBook {
         }
     }
 
-    public static void LoadDishesFromFile(String filename) throws DishException {
+    public static void loadDishesFromFile(String filename) throws DishException {
         try {
             if (Files.size(Paths.get(filename)) == 0) {
                 throw new DishException("Soubor " + filename + " je prazdny ");
@@ -98,7 +98,7 @@ public class CookBook {
         int numOfBlocks = blocks.length;
         if(numOfBlocks != 4) {
             System.err.println("Nespravny pocet polozek na radku: " + line+ "! Pocet polozek: " + numOfBlocks + ".");
-            return null;
+            return new Dish("kureci", 2);
         }
         int idDish = Integer.parseInt(blocks[0].trim());
         String title = blocks[1].trim();

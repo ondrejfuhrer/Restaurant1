@@ -28,6 +28,9 @@ public class Dish {
         this.preparationTime = preparationTime;
         this.image = "blank";
     }
+    public Dish(String title, double price) throws DishException {
+        this(title, price, 25, "blank");
+    }
 
     public int getIdDish() {
         return idDish;

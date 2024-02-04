@@ -1,0 +1,12 @@
+1	Smazeny syr 100g	7.0	25
+2	Hranolky 100g	2.0	25
+3	Kureci rizek 150g	8.0	25
+4	Ryze 100g	2.0	25
+5	Tatarak 100g	6.5	25
+6	Topinka 1ks	1.5	25
+7	Pivo	2.0	25
+8	Kureci rizek obalovany 150g	6.5	30
+9	Hranolky 150g	3.5	15
+10	Pstruh na vine 200g	12.5	25
+11	Kofola 0,5l	3.0	5
+

@@ -30,6 +30,7 @@ public class Order {
         this.countDish = countDish;
         addOrder(this);
     }
+    public Order() {}
 
     public int getOrderId() {
         return orderId;
@@ -49,17 +50,14 @@ public class Order {
         return tableNumber;
     }
 
-//    public void setTableNumber(int tableNumber) {
-//        this.tableNumber = tableNumber;
-//    }
+
 
     public Dish getDish() {
         return dish;
     }
+    public int getDishId(){return dish.getIdDish();
+    }
 
-//    public void setDish(Dish dish) {
-//        this.dish = dish;
-//    }
 
     public LocalTime getOrderTime() {
         return orderTime;
