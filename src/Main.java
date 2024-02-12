@@ -61,5 +61,5 @@ public class Main {
         restaurantManager.printTodayOrderedDishes();
         restaurantManager.printOrdersForTable(15);
      }
-     //Zkouska gitu
+     //Zkouska gitu jop
 }
