@@ -1,5 +1,6 @@
 import cz.surin.dusan.Restaurant.*;
 import exceptions.DishException;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -41,10 +42,11 @@ public class Main {
     private static void loadDataFromExistFiles(OrderManager orderManager) {
         try{
             CookBook.loadDishesFromFile(Settings.fileDishesForLoad());
+            orderManager.loadOrdersFromFile(Settings.fileOrdersForLoad());
         }catch (DishException e) {
             System.err.println("Chyba pri cteni ze souboru: "+ e.getLocalizedMessage());
         }
-        orderManager.loadOrdersFromFile(Settings.fileOrdersForLoad());
+
     }
      private static void saveDishesAndOrdersToFiles(CookBook cookBook, OrderManager orderManager) {
         try {
@@ -55,11 +57,15 @@ public class Main {
         orderManager.saveOrdersToFile(Settings.fileOrdersForSave());
      }
      private static void printForRestaurantManagement(RestaurantManager restaurantManager) {
-        restaurantManager.countUnfinichedOrderds();
-        restaurantManager.sortOrdersByOrderTime();
+        int unfinishedOrders = restaurantManager.countUnfinichedOrderds();
+         System.out.println("Pocet aktulne rozpracovanych objednavek : " + unfinishedOrders);
+         List<Order> sortedOrders = restaurantManager.sortOrdersByOrderTime();
+         for (Order order : sortedOrders) {
+             System.out.println("Objednavka Id: " + order.getOrderId() + ", Cas: " + order.getOrderTime());
+         }
         System.out.println("Prumerna doba vyrizeni objednavky: " +restaurantManager.avarageProcessTimeForOrders());
         restaurantManager.printTodayOrderedDishes();
         restaurantManager.printOrdersForTable(15);
      }
-     //Zkouska gitu jop
+
 }

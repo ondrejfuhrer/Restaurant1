@@ -5,7 +5,7 @@ import exceptions.RestaurantException;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class OrderManager {
@@ -23,7 +23,7 @@ public class OrderManager {
             e.printStackTrace();
         }
     }
-    public static String fulfilmentTimeString(LocalTime localTime) {
+    public static String fulfilmentTimeString(LocalDateTime localTime) {
         String fulfilmentTimeStr = localTime != null ?
                 localTime.format(DateTimeFormatter.ofPattern("HH:mm")) : "null";
         return fulfilmentTimeStr;

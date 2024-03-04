@@ -1,28 +1,26 @@
 package cz.surin.dusan.Restaurant;
 
-import javax.swing.*;
+
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class RestaurantManager {
     Order order = new Order();
-    public void countUnfinichedOrderds() {
+    public int countUnfinichedOrderds() {
         int unfinishedOrders = 0;
         for (Order order : order.getOrders().values()) {
             if (!order.isPaid() && order.getFulfilmentTime() == null) {
                 unfinishedOrders++;
             }
         }
-        System.out.println("Pocet aktualne rozpracovanych objednavek : " + unfinishedOrders);
+        return unfinishedOrders;
     }
-    public void sortOrdersByOrderTime() {
+    public List<Order> sortOrdersByOrderTime() {
         List<Order> orderList = new ArrayList<>(order.getOrders().values());
         Collections.sort(orderList, Comparator.comparing(Order::getOrderTime));
-        for (Order order : orderList) {
-            System.out.println("Objednavka Id: " + order.getOrderId() + ", Cas: " + order.getOrderTime());
-        }
+        return orderList;
     }
     public double avarageProcessTimeForOrders() {
         int totalProcessOrders = 0;
@@ -41,8 +39,8 @@ public class RestaurantManager {
         return avarageTimeInSeconds;
     }
     public Duration getOrderProcessingTime(Order order) {
-        LocalTime orderTime = order.getOrderTime();
-        LocalTime fulfilmentTime = order.getFulfilmentTime();
+        LocalDateTime orderTime = order.getOrderTime();
+        LocalDateTime fulfilmentTime = order.getFulfilmentTime();
         if (fulfilmentTime != null) {
             return Duration.between (orderTime, fulfilmentTime);
         }else {
@@ -55,7 +53,7 @@ public class RestaurantManager {
         System.out.println("Dnesni objednana jidla:");
         Set<Integer> todayDishes = new HashSet<>();
         for (Order order : order.getOrders().values()) {
-            LocalDate orderDAte = LocalDate.now();
+            LocalDate orderDAte = order.getOrderTime().toLocalDate();
             if (orderDAte.equals(today)) {
                 int dishId = order.getDishId();
                 if(!todayDishes.contains(dishId)) {

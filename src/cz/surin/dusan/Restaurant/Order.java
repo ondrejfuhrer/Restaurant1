@@ -2,7 +2,7 @@ package cz.surin.dusan.Restaurant;
 
 import exceptions.DishException;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
@@ -13,8 +13,8 @@ public class Order {
     private int orderId;
     private int tableNumber;
     private Dish dish;
-    private LocalTime orderTime;
-    private LocalTime fulfilmentTime;
+    private LocalDateTime orderTime;
+    private LocalDateTime fulfilmentTime;
     private boolean isPaid;
     private int countDish = 1;
     private static int nextBillId = 1;
@@ -25,7 +25,7 @@ public class Order {
         this.orderId = nextOrderId++;
         this.tableNumber = tableNumber;
         this.dish = CookBook.getDishById(dishId);
-        this.orderTime = LocalTime.now();
+        this.orderTime = LocalDateTime.now();
         this.isPaid = false;
         this.countDish = countDish;
         addOrder(this);
@@ -59,15 +59,15 @@ public class Order {
     }
 
 
-    public LocalTime getOrderTime() {
+    public LocalDateTime getOrderTime() {
         return orderTime;
     }
 
-    public void setOrderTime(LocalTime orderTime) {
+    public void setOrderTime(LocalDateTime orderTime) {
         this.orderTime = orderTime;
     }
 
-    public LocalTime getFulfilmentTime() {
+    public LocalDateTime getFulfilmentTime() {
         return fulfilmentTime;
     }
 
@@ -216,4 +216,3 @@ public class Order {
                 '}';
     }
 }
-
