@@ -1,5 +1,6 @@
 package cz.surin.dusan.Restaurant;
 
+import exceptions.DishException;
 import exceptions.RestaurantException;
 
 import java.io.*;
@@ -29,7 +30,7 @@ public class OrderManager {
         return fulfilmentTimeStr;
     }
 
-    public void loadOrdersFromFile(String filename) {
+    public void loadOrdersFromFile(String filename) throws DishException {
         Path file = Path.of(filename);
         try {
             if (Files.size(file) == 0) {
@@ -47,11 +48,11 @@ public class OrderManager {
                     }
                 }
                 System.out.println("Objednavka byla nactena ze souboru " + filename);
-            } catch (IOException e) {
-                System.err.println("Chyba pri cteni objednavky " + e.getLocalizedMessage());
+            } catch (RestaurantException | IOException e) {
+                throw new DishException("Chyba pri cteni objednavky " + e.getLocalizedMessage());
             }
-        } catch (RestaurantException | IOException e) {
-            System.err.println("Chyba pri zjistovani velikosti souboru: " + e.getMessage());
+        } catch (IOException e) {
+            throw new DishException("Chyba pri zjistovani velikosti souboru: " + e.getMessage());
         }
     }
     private Order loadOrderFromLine(String line) {

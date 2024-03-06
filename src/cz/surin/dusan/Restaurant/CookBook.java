@@ -97,8 +97,7 @@ public class CookBook {
         String[] blocks = line.split(Settings.fileItemDelimeter());
         int numOfBlocks = blocks.length;
         if(numOfBlocks != 4) {
-            System.err.println("Nespravny pocet polozek na radku: " + line+ "! Pocet polozek: " + numOfBlocks + ".");
-            return new Dish("kureci", 2);
+            throw new DishException("Nespravny pocet polozek na radku: " + line+ "! Pocet polozek: " + numOfBlocks + ".");
         }
         int idDish = Integer.parseInt(blocks[0].trim());
         String title = blocks[1].trim();
