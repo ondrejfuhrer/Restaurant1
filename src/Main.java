@@ -11,6 +11,7 @@ public class Main {
 
         loadDataFromExistFiles(orderManager);
         pripareDateForTesting(cookBook,order);
+        order.getOrderById(2).settingsFulfilmentTime();
         order.printTotalDishPriceForTable(15);
         printForRestaurantManagement(restaurantManager);
         saveDishesAndOrdersToFiles(cookBook, orderManager);
