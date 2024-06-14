@@ -16,7 +16,7 @@ public class OrderManager {
             for(Order order : order.getOrders().values()) {
                 writer.write(order.getOrderId() + "\t" + order.getTableNumber() + "\t"
                 + order.getDishId() + "\t" + order.getCountDish() + "\t" + order.getOrderTime() + "\t"
-                + fulfilmentTimeString(order.getFulfilmentTime()) + "\t" + order.isPaid());
+                + fulfilmentTimeString(order.getFulfilmentTime()));
                 writer.newLine();
             }
             System.out.println("Objednavka byla ulozena do souboru : "+ filename);
@@ -57,17 +57,15 @@ public class OrderManager {
     }
     private Order loadOrderFromLine(String line) {
         String[] parts = line.split("\t");
-        if (parts.length != 7) {
+        if (parts.length != 6) {
             return null;
         }
         int orderId = Integer.parseInt(parts[0].trim());
         int tableNumber = Integer.parseInt(parts[1].trim());
         int disId = Integer.parseInt(parts[2].trim());
         int countDish = Integer.parseInt(parts[3].trim());
-        boolean isPaid = Boolean.parseBoolean(parts[6].trim());
         Order order = new Order(tableNumber, disId, countDish);
         order.setOrderId(orderId);
-        order.setPaid(isPaid);
         return order;
 
     }
